@@ -1,0 +1,93 @@
+@host=http://127.0.0.1:5001
+
+### GET list of medspas
+GET {{host}}/medspas
+
+### POST to create a medspa
+POST {{host}}/medspas
+Content-Type: application/json
+
+{
+    "name": "Medspa 1",
+    "address": "123 Main St",
+    "phone_number": "123-456-7890",
+    "email_address": "medspa1@example.com"
+}
+
+### POST to create a service
+POST {{host}}/services
+Content-Type: application/json
+
+{
+    "name": "Service 1",
+    "description": "Service 1 description",
+    "duration": 30,
+    "medspa_id": 1,
+    "supplier_name": "",
+    "price": 100,
+    "service_type_id": 3
+}
+
+### GET a service by id
+GET {{host}}/services/17
+
+### PUT to update a service
+PUT {{host}}/services/17
+Content-Type: application/json
+
+{
+    "name": "Service 1 updated 1",
+    "description": "Service 1 description",
+    "duration": 30,
+    "price": 100
+}
+
+### GET list of services for a medspa
+GET {{host}}/medspas/1/services
+
+### POST to create an appointment
+POST {{host}}/appointments
+Content-Type: application/json
+
+{
+    "start_time": "2025-01-01T10:00:00",
+    "medspa_id": 1,
+    "service_ids": [1, 2, 3, 16, 17]
+}
+
+### GET an appointment by id
+GET {{host}}/appointments/2
+
+### PUT to update an appointment status
+PUT {{host}}/appointments/2/status
+Content-Type: application/json
+
+{
+    "status": "completed"
+}
+
+### GET list of appointments with filters
+GET {{host}}/appointments?status=scheduled&start_date=2025-01-01
+
+
+
+### POST to create a service category
+POST {{host}}/service-categories
+Content-Type: application/json
+
+{
+    "name": "Category 1"
+}
+
+### POST to create a service type
+POST {{host}}/service-types
+Content-Type: application/json
+
+{
+    "name": "Type 1",
+    "category_id": 2
+}
+
+### GET list of service types
+GET {{host}}/service-types
+
